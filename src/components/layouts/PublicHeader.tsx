@@ -5,8 +5,8 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
 import Link from "next/link"
-import { Input } from "../ui/input"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
+import SearchBox from "@/components/post/SearchBox"
 
 export default function PublicHeader() {
   return (
@@ -25,10 +25,7 @@ export default function PublicHeader() {
             </NavigationMenuList>
           </NavigationMenu>
           <div className="flex items-center gap-4">
-            <Input
-              placeholder="Search"
-              className="w-[200px] lg:w-[300px]"
-            />
+            <SearchBox />
             <Button variant="outline" asChild>
               <Link href="/login">
                 Login
