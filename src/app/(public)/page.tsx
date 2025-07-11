@@ -11,7 +11,7 @@ type Props = {
 export default async function Page(props: Props) {
   const searchParams = await props.searchParams
   const query = searchParams.query || ""
-  
+
   const posts = query
     ? await searchPosts(query) as Post[]
     : await getPosts() as Post[]
