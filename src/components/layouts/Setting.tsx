@@ -25,7 +25,7 @@ export default function Setting(props: SettingProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="cursor-pointer">
         {session.user?.name}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
