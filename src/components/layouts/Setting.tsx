@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Session } from "next-auth";
 import { signOut } from "@/auth";
-import { Button } from "../ui/button";
 
 type SettingProps = {
   session: Session;
