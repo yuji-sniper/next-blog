@@ -18,7 +18,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     Credentials({
       async authorize(credentials) {
         const parsedCredentials = z
-          .object({ email: z.string().email(), password: z.string().min(8) })
+          .object({ email: z.email(), password: z.string().min(8) })
           .safeParse(credentials);
         
         if (parsedCredentials.success) {
@@ -34,4 +34,14 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = (token.id || token.sub || "") as string;
+        session.user.name = token.name ?? "";
+        session.user.email = token.email ?? "";
+      }
+      return session;
+    },
+  },
 });

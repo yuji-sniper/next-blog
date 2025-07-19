@@ -6,9 +6,11 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <PrivateHeader />
-      {children}
-    </div>
+    <>
+      <PrivateHeader/>
+      <div className="container mx-auto px-4 py-8">
+        {children}
+      </div>
+    </>
   );
 }

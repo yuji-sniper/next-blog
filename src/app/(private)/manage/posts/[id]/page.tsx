@@ -1,4 +1,5 @@
-import { getPost } from "@/lib/post"
+import { auth } from "@/auth";
+import { getOwnPost } from "@/lib/ownPost";
 import { Post } from "@/types/post"
 import { notFound } from "next/navigation"
 import {
@@ -23,8 +24,14 @@ type Params = {
 
 export default async function Page(params: Params) {
   const { id } = await params.params
-  const post = await getPost(id) as Post
 
+  const session = await auth();
+  const userId = session?.user?.id;
+  if (!userId) {
+    throw new Error("不正なリクエストです");
+  }
+
+  const post = await getOwnPost(userId, id) as Post
   if (!post) {
     notFound()
   }

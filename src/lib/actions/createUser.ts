@@ -14,7 +14,6 @@ type ActionState = {
 
 function handleValidationError(error: z.ZodError): ActionState {
   const { fieldErrors, formErrors } = z.flattenError(error);
-
   if (formErrors.length > 0) {
     return {
       success: false,
@@ -24,7 +23,6 @@ function handleValidationError(error: z.ZodError): ActionState {
       },
     };
   }
-
   return {
     success: false,
     errors: fieldErrors,
@@ -39,7 +37,7 @@ function handleError(customErrors: Record<string, string[]>): ActionState {
 }
 
 export async function createUser(
-  prevState: ActionState,
+  _: ActionState,
   formData: FormData
 ): Promise<ActionState> {
   // フォームデータを取得
